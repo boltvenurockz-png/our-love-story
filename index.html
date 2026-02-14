@@ -71,3 +71,137 @@ button:hover {
 }
 
 h1 {
+  padding: 20px;
+  color: #c2185b;
+}
+
+img {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+h2 {
+  color: #880e4f;
+}
+
+p {
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.navbtn {
+  margin: 20px 10px;
+  padding: 10px 20px;
+  background: #c2185b;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Floating Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  color: pink;
+}
+
+@keyframes float {
+  0% {transform: translateY(0); opacity: 1;}
+  100% {transform: translateY(-100vh); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD LOCK -->
+<div id="lockScreen">
+  <h1>Enter the Secret Password ❤️</h1>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <button onclick="checkPassword()">Unlock 💘</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent">
+
+<h1>"Forever started with you" ❤️</h1>
+
+<div class="glow">Paige my beautiful wife & my forever Valentine ✨</div>
+
+<h2 id="title">Our Journey</h2>
+<img id="photo" src="IMG_4624.png">
+<p id="caption">Started from Lovers in the temple… now stuck forever 😌</p>
+
+<button class="navbtn" onclick="prevSlide()">⬅ Back</button>
+<button class="navbtn" onclick="nextSlide()">Next ❤️</button>
+
+</div>
+
+<script>
+
+const slides = [
+  {title:"Our Journey", img:"IMG_4624.png", caption:"Started from Lovers in the temple… now stuck forever 😌"},
+  {title:"Beautiful Wifey", img:"IMG_4625.png", caption:"Proof I married above my level 😭❤️"},
+  {title:"Jaipur Diaries", img:"IMG_4626.png", caption:"Romantic outside… hungry inside 🍕😂"},
+  {title:"Road Trip Adventures", img:"IMG_4627.png", caption:"Driver: Me. Boss: Her. Don't ask me what she did here 😂"},
+  {title:"Sleeping Zzzz", img:"IMG_4628.png", caption:"I sleep. She protects. 💤👑"},
+  {title:"New York Memories", img:"IMG_4630.png", caption:"I should just listen to my wife about the weather. I never listen 🗽❄️"},
+  {title:"Wedding Day Joy", img:"IMG_4632.png", caption:"Legally trapped forever 💍😂 And you still say I am a weak guy 😜"},
+  {title:"Happy Valentine’s ❤️", img:"IMG_4637.png", caption:"You are as beautiful as this flower 🌹"},
+  {title:"Dancer Wifey", img:"IMG_4638.png", caption:"She dances. I admire."},
+  {title:"Forever With You 🐶", img:"IMG_4640.png", caption:"Us + Sinai = Perfect chaos 🐶💕"}
+];
+
+let current = 0;
+
+function updateSlide() {
+  document.getElementById("title").innerText = slides[current].title;
+  document.getElementById("photo").src = slides[current].img;
+  document.getElementById("caption").innerText = slides[current].caption;
+}
+
+function nextSlide() {
+  current++;
+  if (current >= slides.length) {
+    alert("Will you be my Valentine forever? 💍❤️");
+    current = 0;
+  }
+  updateSlide();
+}
+
+function prevSlide() {
+  current--;
+  if (current < 0) current = 0;
+  updateSlide();
+}
+
+/* PASSWORD CHECK */
+function checkPassword() {
+  const password = document.getElementById("passwordInput").value;
+  if (password === "sinai") {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+  } else {
+    alert("Wrong password 😜 Try again!");
+  }
+}
+
+/* Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.innerText = "❤️";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 800);
+
+</script>
+
+</body>
+</html>
